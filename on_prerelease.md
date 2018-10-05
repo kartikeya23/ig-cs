@@ -1,5 +1,5 @@
 ```
-Names[20], Ages[20], pb[20], Id[20], Runs[20], AgeBand[20], FastestAge[3], Timings[20][52], Count, Name, Age
+Names[20], Ages[20], pb[20], Id[20], Runs[20], AgeBand[20], FastestAge[3], Timings[20][52], Count, Name, Age, StartTime[3], EndTime[3]
 
 FastestAge[] <-- {-1, -1, -1}
 
@@ -67,7 +67,7 @@ EndSub
 
 //finds out the time duration
 SubProcedure getSpan(Start, End)
-  Time <-- End - Start
+  Time <-- (60 * (End[0] - Start[0])) + (End[1] - Start[1]) + ((End[2] - Start[2]) / 60)
   RETURN Time
 EndSub
 
@@ -95,7 +95,7 @@ FOR Count <-- 0 TO 19
 	
 	// add times till -1 is not input as starttime or max number is reached 
 	FOR Run <-- 0 TO 51
-		INPUT StartTime and EndTime
+		INPUT StartTime[], EndTime[]
 		Time <-- getSpan(StartTime, EndTime)
 		IF StartTime == -1
 			THEN BREAK
